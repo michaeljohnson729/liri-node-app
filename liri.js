@@ -27,19 +27,24 @@ if (command === "spotify-this-song") {
             return console.log('Error occurred: ' + err);
         }
         //  artist(s)
-        //var artistsArr = [];
-        for (var i = 0; i < data.tracks.items[0].artists.length; i++) {
-            artist = data.tracks.items[0].artists[i].name
-            console.log("Song by: " + artist);
+        
+        for (var j = 0; j < data.tracks.items.length; j++) {
+            var artistsArr = [];
+            for (var i = 0; i < data.tracks.items[j].artists.length; i++) {
+            artist = data.tracks.items[j].artists[i].name
+            artistsArr.push(artist);
         }
+        console.log("-------------------------------");
+        console.log("Artist(s): "+artistsArr.join(", "));
         //  The song's name
-        console.log("Song Title: " + data.tracks.items[0].name);
+        console.log("Song Title: " + data.tracks.items[j].name);
         //  A preview link of the song from Spotify
-        console.log("Preview Here " + data.tracks.items[0].preview_url);
+        console.log("Preview Here " + data.tracks.items[j].preview_url);
 
         //  The album that the song is from
-        console.log("Album: " + data.tracks.items[0].album.name)
-
+        console.log("Album: " + data.tracks.items[j].album.name)
+        console.log("-------------------------------");
+    }
 
 
     });
@@ -105,7 +110,7 @@ if (command === "do-what-it-says") {
             //var artistsArr = [];
             for (var i = 0; i < data.tracks.items[0].artists.length; i++) {
                 artist = data.tracks.items[0].artists[i].name
-                console.log("Song by: " + artist);
+                console.log("Artist(s): " + artist);
             }
             //  The song's name
             console.log("Song Title: " + data.tracks.items[0].name);
