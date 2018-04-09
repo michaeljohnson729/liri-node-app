@@ -1,4 +1,5 @@
 require("dotenv").config();
+
 var inquirer = require("inquirer");
 var fs = require("fs");
 var keys = require("./keys.js");
@@ -10,15 +11,19 @@ var command = process.argv[2];
 var client = new Twitter(keys.twitter);
 var spotify = new Spotify(keys.spotify);
 
+if (process.argv.length > 3) throw "Only type the command here. Options are: spotify-this-song, my-tweets, movie-this, and do-what-it-says. You will be asked for the item you want to search for later!";
+
 if (command === "my-tweets") {
     //console.log("tweet tweet");
     var params = { screen_name: 'michaelsadummy' };
     client.get('statuses/user_timeline', params, function (error, tweets, response) {
         if (!error) {
             for (var k = 0; k < tweets.length; k++) {
+                
                 console.log("Tweet: "+tweets[k].text);
                 console.log("Created at: "+tweets[k].created_at);
             }
+            console.log("Number of Tweets: "+tweets.length);
         }
     });
 }
